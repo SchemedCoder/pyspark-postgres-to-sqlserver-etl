@@ -1,0 +1,27 @@
+source:
+  type: postgresql
+  host: localhost
+  port: 5432
+  db: french_bakery_db
+  user: pg_chef
+  table: large_burger_table
+  partition_column: id
+  lower_bound: 1
+  upper_bound: 500000
+  num_partitions: 50
+  driver: org.postgresql.Driver
+
+target:
+  type: sqlserver
+  host: localhost
+  port: 1433
+  db: british_vault_db
+  user: sql_banker
+  table: target_burger_vault
+  batch_size: 5000
+  driver: com.microsoft.sqlserver.jdbc.SQLServerDriver
+
+spark:
+  app_name: Burger_Courier_ETL
+  shuffle_partitions: 200
+  executor_memory: 4g
